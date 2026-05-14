@@ -1,67 +1,633 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Sumit Bhandari</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sumit Bhandari — COO & Fintech Leader</title>
+  <link rel="icon" href="https://raw.githubusercontent.com/bhandari-sumit/sumit.bhandari/master/favicon.png" type="image/png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --surface: #10121a;
+      --border: #1e2235;
+      --gold: #c9a84c;
+      --gold-light: #e4c97e;
+      --gold-dim: rgba(201,168,76,0.12);
+      --text: #e8e4d8;
+      --text-muted: #7a7a8c;
+      --text-dim: #3a3a4a;
+      --accent: #2a6ef5;
+      --accent-glow: rgba(42,110,245,0.15);
+    }
 
-    <!-- Static favicon fallback -->
-    <link rel="shortcut icon" href="favicon.ico">
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!-- Animated favicon -->
-    <link rel="icon" href="animated_favicon.gif" type="image/gif">
+    html { scroll-behavior: smooth; }
 
-    <style>
-        body {
-            background-image: url('background-image.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+      cursor: default;
+    }
 
-        h1 {
-            text-align: center;
-            font-family: cursive;
-        }
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9999; opacity: 0.5;
+    }
 
-        .contact-icons a {
-            margin-right: 12px;
-        }
+    /* ── GRID LINES ── */
+    .grid-bg {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
 
-        .contact-icons img {
-            width: 32px;
-            height: 32px;
-        }
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 22px 60px;
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      background: rgba(11,12,16,0.85);
+      animation: fadeDown 0.8s ease both;
+    }
+    @keyframes fadeDown { from { opacity:0; transform:translateY(-16px); } to { opacity:1; transform:none; } }
 
-        footer {
-            margin-top: 50px;
-        }
-    </style>
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--gold);
+    }
+    .nav-logo span { color: var(--text-muted); font-weight: 300; }
+
+    .nav-links {
+      display: flex; gap: 36px; list-style: none;
+    }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 140px 60px 80px;
+      overflow: hidden;
+    }
+
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+    }
+    .hero-orb-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 70%);
+      top: -100px; right: -100px;
+      animation: pulse 8s ease-in-out infinite alternate;
+    }
+    .hero-orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(42,110,245,0.12) 0%, transparent 70%);
+      bottom: 0; left: 10%;
+      animation: pulse 11s ease-in-out infinite alternate-reverse;
+    }
+    @keyframes pulse { from { transform: scale(1); } to { transform: scale(1.15); } }
+
+    .hero-inner {
+      max-width: 900px;
+      position: relative; z-index: 2;
+    }
+
+    .hero-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 28px;
+      display: flex; align-items: center; gap: 14px;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+    .hero-label::before {
+      content: '';
+      display: block; width: 40px; height: 1px;
+      background: var(--gold);
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.01em;
+      color: var(--text);
+      animation: fadeUp 0.8s 0.35s ease both;
+    }
+    .hero-name em {
+      font-style: normal;
+      color: var(--gold);
+      display: block;
+    }
+
+    .hero-title {
+      margin-top: 28px;
+      font-size: 1.05rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 540px;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+    .hero-title strong { color: var(--text); font-weight: 500; }
+
+    .hero-meta {
+      margin-top: 20px;
+      display: flex; gap: 24px; flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.65s ease both;
+    }
+    .hero-pill {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 6px 14px;
+      text-transform: uppercase;
+    }
+
+    .hero-cta {
+      margin-top: 52px;
+      display: flex; gap: 18px; flex-wrap: wrap;
+      animation: fadeUp 0.8s 0.8s ease both;
+    }
+    .btn-primary {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 14px 32px;
+      background: var(--gold);
+      color: #0b0c10;
+      border: none; cursor: pointer;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-outline {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 13px 32px;
+      background: transparent;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      cursor: pointer;
+      transition: border-color 0.25s, color 0.25s;
+    }
+    .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:none; } }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      animation: fadeUp 0.8s 1s ease both;
+    }
+    .stat {
+      padding: 36px 48px;
+      border-right: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .stat:last-child { border-right: none; }
+    .stat:hover { background: var(--gold-dim); }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 600;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── SECTION COMMON ── */
+    section {
+      position: relative; z-index: 1;
+      padding: 100px 60px;
+    }
+    .section-header {
+      display: flex; align-items: baseline; gap: 20px;
+      margin-bottom: 60px;
+    }
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--gold);
+      letter-spacing: 0.12em;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.4rem;
+      font-weight: 300;
+      color: var(--text);
+    }
+    .section-line {
+      flex: 1; height: 1px;
+      background: var(--border);
+    }
+
+    /* ── EXPERTISE ── */
+    #expertise { background: var(--surface); }
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .expertise-card {
+      background: var(--surface);
+      padding: 42px 36px;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .expertise-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    .expertise-card:hover { background: var(--gold-dim); }
+    .expertise-card:hover::before { transform: scaleX(1); }
+
+    .expertise-icon {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+    .expertise-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+    .expertise-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+    .expertise-tags {
+      margin-top: 20px;
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      border: 1px solid rgba(201,168,76,0.25);
+      padding: 4px 10px;
+      text-transform: uppercase;
+    }
+
+    /* ── ABOUT ── */
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .about-text p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.9;
+      margin-bottom: 18px;
+    }
+    .about-text p strong { color: var(--text); font-weight: 500; }
+
+    .about-facts {
+      display: flex; flex-direction: column; gap: 0;
+      border: 1px solid var(--border);
+    }
+    .fact-row {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.25s;
+    }
+    .fact-row:last-child { border-bottom: none; }
+    .fact-row:hover { background: var(--gold-dim); }
+    .fact-key {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 18px 20px;
+      min-width: 140px;
+      border-right: 1px solid var(--border);
+      display: flex; align-items: center;
+    }
+    .fact-val {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      padding: 18px 20px;
+      display: flex; align-items: center;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--surface); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .contact-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--text);
+    }
+    .contact-headline em { font-style: normal; color: var(--gold); }
+    .contact-sub {
+      margin-top: 18px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .contact-links {
+      display: flex; flex-direction: column; gap: 0;
+      border: 1px solid var(--border);
+    }
+    .contact-link {
+      display: flex; align-items: center; gap: 20px;
+      padding: 22px 28px;
+      border-bottom: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text-muted);
+      transition: background 0.25s, color 0.25s;
+      position: relative;
+    }
+    .contact-link:last-child { border-bottom: none; }
+    .contact-link:hover { background: var(--gold-dim); color: var(--text); }
+    .contact-link::after {
+      content: '→';
+      position: absolute; right: 28px;
+      font-size: 1rem;
+      color: var(--gold);
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+    .contact-link:hover::after { opacity: 1; transform: none; }
+
+    .contact-icon-wrap {
+      width: 40px; height: 40px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--border);
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-link-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .contact-link-val {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative; z-index: 1;
+      border-top: 1px solid var(--border);
+      padding: 32px 60px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+    }
+    .footer-sig {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 18px 24px; }
+      .nav-links { display: none; }
+      .hero { padding: 120px 24px 60px; }
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+      section { padding: 70px 24px; }
+      .expertise-grid { grid-template-columns: 1fr; }
+      .about-inner { grid-template-columns: 1fr; gap: 40px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
 </head>
-
 <body>
-    <h1>Welcome to Sumit Bhandari's Personal Website</h1>
+<div class="grid-bg"></div>
 
-    <p>Please contact Mr. Sumit Bhandari for further information.</p>
-    <p style="font-family:cursive;">
-        This website is hosted free and everything is AI generated.
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">SB<span> / Sumit Bhandari</span></div>
+  <ul class="nav-links">
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#about">Profile</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-inner">
+    <div class="hero-label">COO · Fintech &amp; Payments</div>
+    <h1 class="hero-name">
+      Sumit<br>
+      <em>Bhandari</em>
+    </h1>
+    <p class="hero-title">
+      Chief Operating Officer at <strong>eSewa Remit</strong> — driving product operations, payment infrastructure, and cross-border remittance growth across global corridors from Kathmandu.
     </p>
+    <div class="hero-meta">
+      <span class="hero-pill">📍 Kathmandu, Nepal</span>
+      <span class="hero-pill">🏦 10+ Yrs Banking &amp; Fintech</span>
+      <span class="hero-pill">🌐 Remittance &amp; Payments</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get in Touch</a>
+      <a href="#expertise" class="btn-outline">View Expertise</a>
+    </div>
+  </div>
+</section>
 
-    <footer>
-        <div class="contact-icons">
-            <a href="viber://chat?number=+9779851178648">
-                <img src="viber-icon.png" alt="Viber">
-            </a>
+<!-- STATS BAR -->
+<div class="stats-bar reveal">
+  <div class="stat">
+    <div class="stat-num">10+</div>
+    <div class="stat-label">Years in Banking &amp; Fintech</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">COO</div>
+    <div class="stat-label">Chief Operating Officer</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">∞</div>
+    <div class="stat-label">Global Remittance Corridors</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">NPR</div>
+    <div class="stat-label">Nepal-Based Operations HQ</div>
+  </div>
+</div>
 
-            <a href="https://wa.me/9779851178648">
-                <img src="whatsapp-icon.png" alt="WhatsApp">
-            </a>
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-header reveal">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Areas of Expertise</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="expertise-grid reveal">
+    <div class="expertise-card">
+      <div class="expertise-icon">🏗️</div>
+      <div class="expertise-name">Product Operations</div>
+      <div class="expertise-desc">End-to-end ownership of product workflows — from vendor onboarding to delivery pipelines. Translating business requirements into operational execution.</div>
+      <div class="expertise-tags">
+        <span class="tag">Process Design</span>
+        <span class="tag">Vendor Mgmt</span>
+        <span class="tag">KPI Ownership</span>
+      </div>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-icon">💸</div>
+      <div class="expertise-name">Remittance &amp; Payments</div>
+      <div class="expertise-desc">Deep expertise in cross-border money movement, payment integrations, API-driven transaction flows, and regulatory compliance for remittance corridors.</div>
+      <div class="expertise-tags">
+        <span class="tag">API Integrations</span>
+        <span class="tag">FX Rates</span>
+        <span class="tag">Compliance</span>
+      </div>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-icon">🤖</div>
+      <div class="expertise-name">Automation &amp; Tech</div>
+      <div class="expertise-desc">Hands-on with Python scripting, GitHub Actions, Telegram alerting systems, and data pipeline automation — bridging business logic with technical execution.</div>
+      <div class="expertise-tags">
+        <span class="tag">Python</span>
+        <span class="tag">GitHub Actions</span>
+        <span class="tag">SQL</span>
+      </div>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-icon">👥</div>
+      <div class="expertise-name">Leadership &amp; Hiring</div>
+      <div class="expertise-desc">Building and managing lean product teams, driving hiring justifications, managing knowledge transfer, and eliminating single-point-of-failure dependencies.</div>
+      <div class="expertise-tags">
+        <span class="tag">Team Building</span>
+        <span class="tag">Hiring</span>
+        <span class="tag">KT Planning</span>
+      </div>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-icon">📊</div>
+      <div class="expertise-name">Data &amp; Reporting</div>
+      <div class="expertise-desc">SQL-driven analytics, structured data pipelines, file format conversions, and operational reporting tailored to fintech and remittance business needs.</div>
+      <div class="expertise-tags">
+        <span class="tag">SQL</span>
+        <span class="tag">Data Pipelines</span>
+        <span class="tag">CSV/TXT</span>
+      </div>
+    </div>
+    <div class="expertise-card">
+      <div class="expertise-icon">🤝</div>
+      <div class="expertise-name">Stakeholder Management</div>
+      <div class="expertise-desc">Communicating across executive, technical, and external partner layers — crafting proposals, approval notes, and strategic narratives that move decisions forward.</div>
+      <div class="expertise-tags">
+        <span class="tag">Executive Comms</span>
+        <span class="tag">Negotiations</span>
+        <span class="tag">Proposals</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-            <a href="tel:+9779851178648">
-                <img src="telephone-icon.png" alt="Call">
-            </a>
-        </div>
-
-        <p>&copy; 2024 Sumit Bhandari</p>
-    </footer>
-</body>
-</html>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header reveal">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Professional Profile</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-inner">
+    <div class="about-text reveal">
+      <p>
+        With over a decade embedded in Nepal's banking and fintech ecosystem, <strong>Sumit Bhandari</strong> brings a rare combination of strategic leadership and technical depth to the COO role at eSewa Remit.
+      </p>
+      <p>
+        His career has spanned the full arc of fintech operations — from payment integrations and API-driven transaction
