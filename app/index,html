@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download eSewa App</title>
+    <meta name="robots" content="noindex">
+
+    <script>
+        (function () {
+            const androidLink =
+                "https://play.google.com/store/apps/details?id=com.f1soft.esewa&hl=en";
+
+            const iosLink =
+                "https://apps.apple.com/np/app/esewa/id614370939";
+
+            const ua = navigator.userAgent || "";
+
+            const isAndroid = /android/i.test(ua);
+
+            const isIOS =
+                /iPhone|iPad|iPod/i.test(ua) ||
+                (navigator.platform === "MacIntel" &&
+                 navigator.maxTouchPoints > 1);
+
+            if (isAndroid) {
+                window.location.replace(androidLink);
+            } else if (isIOS) {
+                window.location.replace(iosLink);
+            }
+        })();
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            color: #222;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 380px;
+            padding: 32px 24px;
+            box-sizing: border-box;
+            background: #fff;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 5px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            margin: 0 0 12px;
+            color: #e53935;
+            font-size: 28px;
+        }
+
+        p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .button {
+            display: block;
+            margin-top: 16px;
+            padding: 15px;
+            border-radius: 8px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .android {
+            background: #188038;
+        }
+
+        .ios {
+            background: #111;
+        }
+
+        .footer {
+            margin-top: 24px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container">
+        <h1>Download eSewa</h1>
+
+        <p id="message">
+            Redirecting you to the correct app store...
+        </p>
+
+        <div id="store-options" hidden>
+            <p>Select your device to download eSewa:</p>
+
+            <a class="button android"
+               href="https://play.google.com/store/apps/details?id=com.f1soft.esewa&hl=en">
+                Download for Android
+            </a>
+
+            <a class="button ios"
+               href="https://apps.apple.com/np/app/esewa/id614370939">
+                Download for iPhone
+            </a>
+        </div>
+
+        <p class="footer">eSewa Digital Wallet</p>
+    </main>
+
+    <script>
+        const ua = navigator.userAgent || "";
+
+        const isAndroid = /android/i.test(ua);
+
+        const isIOS =
+            /iPhone|iPad|iPod/i.test(ua) ||
+            (navigator.platform === "MacIntel" &&
+             navigator.maxTouchPoints > 1);
+
+        if (!isAndroid && !isIOS) {
+            document.getElementById("message").textContent =
+                "Choose your app store below.";
+
+            document.getElementById("store-options").hidden = false;
+        }
+    </script>
+</body>
+</html>
