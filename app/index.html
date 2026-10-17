@@ -3,39 +3,40 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Opening eSewa</title>
-  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Opening eSewa...</title>
   <script>
-    (function () {
-      const ua = navigator.userAgent || "";
-      const isAndroid = /Android/i.test(ua);
-      const isIOS = /iPhone|iPad|iPod/i.test(ua) ||
-        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    const ua = navigator.userAgent || navigator.vendor || "";
 
-      const androidStore =
+    const android =
+      /Android/i.test(ua);
+
+    const iphone =
+      /iPhone|iPod/i.test(ua) ||
+      (/iPad/i.test(ua)) ||
+      (navigator.platform === "MacIntel" &&
+       navigator.maxTouchPoints > 1);
+
+    if (android) {
+      window.location.href =
         "https://play.google.com/store/apps/details?id=com.f1soft.esewa&hl=en";
-      const iosStore =
+    } else if (iphone) {
+      window.location.href =
         "https://apps.apple.com/np/app/esewa/id614370939";
-
-      if (isAndroid) {
-        window.location.replace(androidStore);
-      } else if (isIOS) {
-        window.location.replace(iosStore);
-      } else {
-        document.addEventListener("DOMContentLoaded", function () {
-          document.getElementById("fallback").hidden = false;
-        });
-      }
-    })();
+    }
   </script>
 </head>
 <body>
-  <div id="fallback" hidden>
-    <h2>Download eSewa</h2>
-    <p>Open this link on your phone to get the correct app store.</p>
-    <p><a href="https://play.google.com/store/apps/details?id=com.f1soft.esewa&hl=en">Google Play Store</a></p>
-    <p><a href="https://apps.apple.com/np/app/esewa/id614370939">Apple App Store</a></p>
-  </div>
+  <p>If you are not redirected automatically, choose your app store:</p>
+  <p>
+    <a href="https://play.google.com/store/apps/details?id=com.f1soft.esewa&hl=en">
+      Google Play Store
+    </a>
+  </p>
+  <p>
+    <a href="https://apps.apple.com/np/app/esewa/id614370939">
+      Apple App Store
+    </a>
+  </p>
 </body>
 </html>
