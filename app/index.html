@@ -5,26 +5,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Opening eSewa...</title>
-  <script>
-    const ua = navigator.userAgent || navigator.vendor || "";
+<script>
+(function () {
+  var ua = navigator.userAgent || "";
 
-    const android =
-      /Android/i.test(ua);
-
-    const iphone =
-      /iPhone|iPod/i.test(ua) ||
-      (/iPad/i.test(ua)) ||
+  if (/Android/i.test(ua)) {
+    window.location.replace(
+      "https://play.google.com/store/apps/details?id=com.f1soft.esewa&hl=en"
+    );
+  } else if (/iPhone|iPod|iPad/i.test(ua) ||
       (navigator.platform === "MacIntel" &&
-       navigator.maxTouchPoints > 1);
-
-    if (android) {
-      window.location.href =
-        "https://play.google.com/store/apps/details?id=com.f1soft.esewa&hl=en";
-    } else if (iphone) {
-      window.location.href =
-        "https://apps.apple.com/np/app/esewa/id614370939";
-    }
-  </script>
+       navigator.maxTouchPoints > 1)) {
+    window.location.replace(
+      "https://apps.apple.com/np/app/esewa/id614370939"
+    );
+  } else {
+    document.addEventListener("DOMContentLoaded", function () {
+      document.body.innerHTML =
+        "<p>Scan or open this link on your phone to download eSewa.</p>";
+    });
+  }
+})();
+</script>
 </head>
 <body>
   <p>If you are not redirected automatically, choose your app store:</p>
